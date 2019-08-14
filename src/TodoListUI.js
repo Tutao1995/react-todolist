@@ -31,15 +31,16 @@ class TodoListUI extends Component{
                                 className="item-li"
                             >
                                 {item}
-                            <Button
-                                onClick={() => {this.props.deleteItem(index)}}
-                                type="danger"
-                                icon="close"
-                                shape="circle"
-                                className="closeBtn"
-                            >
-                            </Button>
-                            </List.Item>)}
+                                <Button
+                                    onClick={() => {this.props.deleteItem(index)}}
+                                    type="danger"
+                                    icon="close"
+                                    shape="circle"
+                                    className="closeBtn"
+                                >
+                                </Button>
+                            </List.Item>
+                        )}
                     />
                 </div>
             </div>

@@ -1,7 +1,10 @@
 import React,{Component} from 'react'
 import store from './store'
-import { inputChangeAction, addItemAction, deleteItemAction } from './store/actionCreators'
+import 'Antd/dist/antd.css'
+import {message} from 'antd'
+import { inputChangeAction, addItemAction, deleteItemAction, getListAction } from './store/actionCreators'
 import TodoListUI from './TodoListUI'
+// import axios from 'axios'
 class TodoList extends Component {
     constructor(props){
         super(props);
@@ -24,9 +27,11 @@ class TodoList extends Component {
     }
     clickBtn(){
         //action 代表用户的操作
-        //包含一个type属性，且该属性唯一。相同的type，redux视为同一种操作，因为处理action的函数reducer只判断action的type属性。
+        //包含一个type属性，且该属性唯一。相同的type，redux视为同一种操作，因为处理action的函数reducer只判断action的type属性.
+        if(this.state.inputValue === ''){
+            return message.error('There is nothing to add');
+        }
         const action = addItemAction();
-        //
         store.dispatch(action)
     }
     handleInputEnter(e){
@@ -38,6 +43,12 @@ class TodoList extends Component {
         const action = deleteItemAction(index);
         store.dispatch(action)
     }
+    //挂在初始数据渲染
+    componentDidMount() {
+        const action = getListAction();
+        store.dispatch(action);
+    }
+
     render(){
         return(
            <TodoListUI

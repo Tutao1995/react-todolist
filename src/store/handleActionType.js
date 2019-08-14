@@ -15,3 +15,8 @@ export const handleDeleteItem = (state,action) => {
     newState.list.splice(action.index,1);
     return newState
 };
+export const handleGetList = (state,action) => {
+    let newState = deepCloneObj(state);
+    newState.list = action.data;
+    return newState
+};
